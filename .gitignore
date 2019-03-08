@@ -1,0 +1,7 @@
+.DS_Store
+.htrouter.php
+.user.ini
+.idea
+.idea/*
+composer.lock
+templates_c/*
