@@ -1,0 +1,37 @@
+.strlist{
+  float:left;
+  width:266px;
+  margin-bottom:15px;
+  height:330px;
+}
+.strlist .logoimg .logoimg{
+  /*position:relative;*/
+}
+.strlist .logoimg{
+  /*width:36px;*/
+  /*height:65px;*/
+  /*right:20px;*/
+  /*z-index:10;*/
+  /*position:absolute;*/
+}
+.strlist .name{
+  margin-top:3px;
+  font-size:16px;
+  color:#040000;
+  line-height: 22px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.strlist .describe{
+  color:#525252;
+  line-height:22px;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* white-space: nowrap; */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

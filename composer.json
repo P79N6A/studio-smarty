@@ -1,0 +1,5 @@
+{
+    "require": {
+        "phpbe/lib-captcha": "^2.1"
+    }
+}

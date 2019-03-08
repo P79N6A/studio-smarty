@@ -1,0 +1,26 @@
+
+.strlist{
+  float:left;
+  width:200px;
+  margin-bottom:30px;
+}
+.strlist .logoimg{
+  position:relative;
+}
+.strlist .logoimg .logoimg{
+  width:26px;
+  height:45px;
+  right:20px;
+  z-index:10;
+  position:absolute;
+}
+.strlist .name{
+  font-size:16px;
+  color:#040000;
+  line-height: 36px;
+}
+.strlist .describe{
+  color:#525252;
+  line-height:22px;
+}
+

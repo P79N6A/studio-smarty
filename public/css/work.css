@@ -1,0 +1,60 @@
+#work-dir {
+  width:1174px;
+  margin:auto; text-align:center;
+  overflow: hidden
+}
+
+#work-dir .project-item {
+  width: 23%;
+  padding-top: 1px;
+  min-height: 10px;
+  overflow: hidden;
+}
+#work-dir .mr{
+  margin-right: 1.5%;
+}
+
+#work-dir .project-item img {
+  width: 100.5%;
+}
+
+#work-dir .project-item .info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,.5);
+}
+
+#work-dir .project-item .info .inner {
+  /*padding: 45% 20px;*/
+  text-align: center;
+  font-size: 16px;
+  text-transform: uppercase
+}
+
+#work-dir .project-item .info .inner .location {
+  font-size: 11px;
+  margin-top: 4px
+}
+
+#work-dir .project-item .info .inner a {
+  color: #fff
+}
+
+#work-dir .project-item:hover {
+  background-color: #fff;
+}
+
+#work-dir .project-item.horizontal,#work-dir .project-item.large,#work-dir .project-item.transverse {
+  width: 49.8%
+}
+
+#work-dir .project-item.horizontal .ceil,#work-dir .project-item.large .ceil {
+  width: 49.4%
+}
+
+#work-dir .project-item.large .ceil,#work-dir .project-item.vertical .ceil {
+  height: 49.8%
+}

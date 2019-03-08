@@ -1,0 +1,44 @@
+[
+    {
+        "name": "phpbe/lib-captcha",
+        "version": "2.1.0",
+        "version_normalized": "2.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phpbe/lib-captcha.git",
+            "reference": "d3562021c88d50a72b7b87f6d7ee1bb20d0280df"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phpbe/lib-captcha/zipball/d3562021c88d50a72b7b87f6d7ee1bb20d0280df",
+            "reference": "d3562021c88d50a72b7b87f6d7ee1bb20d0280df",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.6.0"
+        },
+        "time": "2018-10-11T01:55:31+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Phpbe\\Lib\\Captcha\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "liu12",
+                "email": "i@liu12.com",
+                "homepage": "http://www.liu12.com/"
+            }
+        ],
+        "description": "验证码",
+        "keywords": [
+            "验证码"
+        ]
+    }
+]
