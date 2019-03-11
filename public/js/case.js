@@ -206,14 +206,14 @@ function getteacher(){
         url:'/getData.php?key=caseList',
         data: {
             pagenum: pagenums,
-            zyoption: zyoption,
-            dqoption: dqoption,
-            gjoption: gjoption,
-            schooloption: schooloption,
-            hotsearch: hotsearch
+            // zyoption: zyoption,
+            // dqoption: dqoption,
+            // gjoption: gjoption,
+            // schooloption: schooloption,
+            // hotsearch: hotsearch
         },
         dataType: "json",
-        type: 'POST',
+        type: 'get',
         timeout: 10000,
         error: function () {
             //alert("服务器超时");
@@ -318,13 +318,8 @@ function getteacher(){
 
                 var str = "";
 
-                // str += '<div class="strlist" style="border: 1px solid rgb(213, 213, 213);" onmouseenter="teacherenter(this)" onmouseleave="teacherleave(this)"><div class="logoimg"><img class="greyimg" showheight="265" showwidth="265" src="/public/'+infoData[i]['thumb']+'" width="200" style="border:none;"></div><div class="name" style=" height: 36px; overflow: hidden; width:90%; margin:auto; font-weight:bold;">'+infoData[i]["title"]+'</div><div class="keywordsdiv" style="height:auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:90%; margin:auto;"><span style="font-size:14px; color:#9fa0a0; line-height:20px;"><span style="">'+infoData[i]["major"]+'</span><br><span style="">'+infoData[i]["theme"]+'</span></span></div><div class="h10"></div><div style="height:10px; border-top:1px #e5e5e5 solid; width:90%; margin:auto;"></div><div style="font-weight:bold;height:14px; width:90%; margin:auto;"><div style="line-height:14px; float:left; color:#040000;"><img src="public/images/zan.png" width="14" height="14">&nbsp;&nbsp;'+infoData[i]["likenums"]+'</div><div style="line-height:14px; float:left; margin-left:10px; color:#040000;"><img src="public/images/see.png" width="14" height="14">&nbsp;&nbsp;'+infoData[i]["browsenums"]+'</div><div class="clear h10"></div></div></div>';
-
-
-
-
                 str += '<a href="'+detailsUri+'&id='+infoData[i]["id"]+'" target="_blank">';
-                str+='<div class="strlist" style="display:none; border:1px #d5d5d5 solid;" onmouseenter="teacherenter(this)" onmouseleave="teacherleave(this)">';
+                str +='<div class="strlist" style="display:none; border:1px #d5d5d5 solid;" onmouseenter="teacherenter(this)" onmouseleave="teacherleave(this)">';
 
                 str+='<div class="logoimg">';
                 if(infoData[i]["teacherlevel"] == "400"){
@@ -405,10 +400,8 @@ function getteacher(){
                     str+='<img showheight="'+infoData[i]["bottomimg_height"]+'" showwidth="'+infoData[i]["bottomimg_width"]+'" src="/public/downimg/'+infoData[i]["img_bottom"]+'" width="266" style="border:none;"/>';
                     str+='</div>';
                 }
+                str+='</div></a>';
 
-                str+='</div>';
-
-                str+='</a>';
                 if(leftdiv <= middlediv && leftdiv <= middlediv2 && leftdiv <= middlediv3 && leftdiv <= rightdiv){
                     $(".addleftdiv").append(str);
                 }else if(middlediv <= leftdiv && middlediv <= middlediv2 && middlediv <= middlediv3 && middlediv <= rightdiv){

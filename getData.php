@@ -10,7 +10,9 @@ require './configs/case.php';
 use \Phpbe\Lib\Captcha\Factory;
 
 if($_GET['key']=='caseList'){
-    die(json_encode($case));
+    $_GET['pagenum'] = $_GET['pagenum'] ? $_GET['pagenum'] : 1;
+    $nums = 10;
+    die(json_encode(array_slice($case,$nums*($_GET['pagenum']-1),$nums)));
 }
 // ...
 //$rgbColor = array(255, 0, 0); // 红色

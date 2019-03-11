@@ -24,7 +24,7 @@
 
 
 <div class="body" datatype="{$currentKey}">
-    {if $category}
+    {if $category and $currentKey neq case}
         {assign var=i value=1}
         {foreach $category as $key=>$val}
             {if $key|in_array:$classArr}
@@ -38,6 +38,7 @@
             {/if}
         {/foreach}
     {/if}
+    {if $currentKey neq case }
         <div class="search-box">
             <div>
                 <input type="text" class="hotsearch" value="" placeholder="">
@@ -45,11 +46,12 @@
                 <div class="clear"></div>
             </div>
         </div>
+    {/if}
 </div>
 
 <div class="clear"></div>
 
-{if $category}
+{if $category and $currentKey neq case}
     {assign var=j value=1}
         {foreach $category as $key=>$val}
             {if $key|in_array:$classArr}
