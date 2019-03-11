@@ -6,11 +6,14 @@
  * Time: 12:43 PM
  */
 require_once './vendor/autoload.php';
-
+require './configs/case.php';
 use \Phpbe\Lib\Captcha\Factory;
 
+if($_GET['key']=='caseList'){
+    die( json_encode($case));
+}
 // ...
-$rgbColor = array(255, 0, 0); // 红色
+//$rgbColor = array(255, 0, 0); // 红色
 
 //$libCaptcha = Factory::getInstance();
 //$libCaptcha->setFontColor($rgbColor);
@@ -20,6 +23,6 @@ $rgbColor = array(255, 0, 0); // 红色
 //$libCaptcha->border(1, $rgbColor); // 添加边框
 //$libCaptcha->output();
 //$libCaptcha->toString();
-$catcha = '1';
-$_SESSION['captcha'] = $catcha;
-echo $catcha;
+//$catcha = '1';
+//$_SESSION['captcha'] = $catcha;
+//echo $catcha;

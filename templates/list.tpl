@@ -2,14 +2,20 @@
 
 {include file="banner.tpl"}
 
-{if $smarty.get.key eq charting}
+{assign var=currentKey value=$smarty.get.key|default:'index' }
+
+{if $currentKey eq charting}
     <script src="public/js/charting.js"></script>
     <link rel="stylesheet" href="public/css/charting.css">
-{elseif $smarty.get.key eq class}
+{elseif $currentKey eq class}
     <script src="public/js/class.js"></script>
     <link rel="stylesheet" href="public/css/class.css">
 {else}
-    <script src="public/js/list.js"></script>
+    {if $currentKey eq case}
+        <script src="public/js/case.js"></script>
+    {else}
+        <script src="public/js/list.js"></script>
+    {/if}
     <link rel="stylesheet" href="public/css/list.css">
 {/if}
 
@@ -17,7 +23,7 @@
 <div class="h15"></div>
 
 
-<div class="body">
+<div class="body" datatype="{$currentKey}">
     {if $category}
         {assign var=i value=1}
         {foreach $category as $key=>$val}
@@ -71,23 +77,23 @@
 <div class="body">
 
         <!-- left -->
-        <div class="{if $smarty.get.key|in_array:[charting,class]}w266{else}w180{/if} fl addleftdiv"></div>
+        <div class="{if $currentKey|in_array:[charting,class]}w266{else}w180{/if} fl addleftdiv"></div>
 
         <!-- middle -->
-        <div class="{if $smarty.get.key|in_array:[charting,class]}w266 mf37{else}w180 mf64{/if} fl addmiddlediv"></div>
+        <div class="{if $currentKey|in_array:[charting,class]}w266 mf37{else}w180 mf64{/if} fl addmiddlediv"></div>
 
-        <div class="{if $smarty.get.key|in_array:[charting,class]}w266 mf37{else}w180 mf64{/if} fl addmiddlediv2"></div>
+        <div class="{if $currentKey|in_array:[charting,class]}w266 mf37{else}w180 mf64{/if} fl addmiddlediv2"></div>
 
-        {if $smarty.get.key neq charting}
+        {if $currentKey neq charting}
             <div class="w180 mf64 fl addmiddlediv3"></div>
         {/if}
 
         <!-- right -->
-        <div class="{if $smarty.get.key eq charting}w266 mf37{else}w180 mf64{/if} fl addrightdiv"></div>
+        <div class="{if $currentKey eq charting}w266 mf37{else}w180 mf64{/if} fl addrightdiv"></div>
 
         <div class="clear"></div>
         <div style="text-align:center; height:80px;">
-            {if $smarty.get.key|in_array:[charting,class]}
+            {if $currentKey|in_array:[charting,class]}
                 <img src="public/images/search_down2.png" style="margin-left:10px;" class="getnextmatter">
             {else}
             <div style="height:30px; width:120px; cursor:pointer; border:1px #d5d5d5 solid; margin:auto; line-height:30px;" class="getnextteacher">
@@ -98,7 +104,7 @@
 
 </div>
 
-{if $smarty.get.key eq charting}
+{if $currentKey eq charting}
     <div class="matteralertgrey"></div>
     <div id="style-1" class="matteralertshow">
         <div class="closematterdiv" style="font-family:'黑体'; font-size:32px; float:right; margin-right: 20px; cursor:pointer; color:#444444; margin-top: 10px;">
