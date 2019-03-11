@@ -318,7 +318,7 @@ function getteacher(){
 
                 var str = "";
 
-                str += '<a href="'+detailsUri+'&id='+infoData[i]["id"]+'" target="_blank">';
+                // str += '<a href="'+detailsUri+'&id='+infoData[i]["id"]+'" target="_blank">';
                 str +='<div class="strlist" style="display:none; border:1px #d5d5d5 solid;" onmouseenter="teacherenter(this)" onmouseleave="teacherleave(this)">';
 
                 str+='<div class="logoimg">';
@@ -400,7 +400,8 @@ function getteacher(){
                     str+='<img showheight="'+infoData[i]["bottomimg_height"]+'" showwidth="'+infoData[i]["bottomimg_width"]+'" src="/public/downimg/'+infoData[i]["img_bottom"]+'" width="266" style="border:none;"/>';
                     str+='</div>';
                 }
-                str+='</div></a>';
+                str+='</div>';
+                str +='</a>';
 
                 if(leftdiv <= middlediv && leftdiv <= middlediv2 && leftdiv <= middlediv3 && leftdiv <= rightdiv){
                     $(".addleftdiv").append(str);
