@@ -10,7 +10,7 @@ require './configs/case.php';
 use \Phpbe\Lib\Captcha\Factory;
 
 if($_GET['key']=='caseList'){
-    die( json_encode($case));
+    die(json_encode($case));
 }
 // ...
 //$rgbColor = array(255, 0, 0); // 红色

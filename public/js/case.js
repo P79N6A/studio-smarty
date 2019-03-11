@@ -203,7 +203,7 @@ function getteacher(){
     var middleallheight = 0;
     var rightallheight = 0;
     $.ajax({
-        url:uri+'/index/getinfo/get_teacher2',
+        url:'/getData.php?key=caseList',
         data: {
             pagenum: pagenums,
             zyoption: zyoption,
@@ -212,17 +212,18 @@ function getteacher(){
             schooloption: schooloption,
             hotsearch: hotsearch
         },
-        dataType: "text",
+        dataType: "json",
         type: 'POST',
         timeout: 10000,
         error: function () {
             //alert("服务器超时");
         },
         success: function (data) {
-            //alert(data)
+            console.log(data)
             pagenums++;
-            var json = eval('(' + data + ')');
-            var infoData=json["data"];
+            // var json = eval('(' + data + ')');
+            var infoData=data;
+            // console.log(infoData)
             var nums = 1;
             for (i in infoData) {
                 var describeheightleft = 0;
@@ -316,7 +317,13 @@ function getteacher(){
 
 
                 var str = "";
-                str += '<a href="'+detailsUri+'&id='+infoData[i]["teacher_id"]+'" target="_blank">';
+
+                // str += '<div class="strlist" style="border: 1px solid rgb(213, 213, 213);" onmouseenter="teacherenter(this)" onmouseleave="teacherleave(this)"><div class="logoimg"><img class="greyimg" showheight="265" showwidth="265" src="/public/'+infoData[i]['thumb']+'" width="200" style="border:none;"></div><div class="name" style=" height: 36px; overflow: hidden; width:90%; margin:auto; font-weight:bold;">'+infoData[i]["title"]+'</div><div class="keywordsdiv" style="height:auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:90%; margin:auto;"><span style="font-size:14px; color:#9fa0a0; line-height:20px;"><span style="">'+infoData[i]["major"]+'</span><br><span style="">'+infoData[i]["theme"]+'</span></span></div><div class="h10"></div><div style="height:10px; border-top:1px #e5e5e5 solid; width:90%; margin:auto;"></div><div style="font-weight:bold;height:14px; width:90%; margin:auto;"><div style="line-height:14px; float:left; color:#040000;"><img src="public/images/zan.png" width="14" height="14">&nbsp;&nbsp;'+infoData[i]["likenums"]+'</div><div style="line-height:14px; float:left; margin-left:10px; color:#040000;"><img src="public/images/see.png" width="14" height="14">&nbsp;&nbsp;'+infoData[i]["browsenums"]+'</div><div class="clear h10"></div></div></div>';
+
+
+
+
+                str += '<a href="'+detailsUri+'&id='+infoData[i]["id"]+'" target="_blank">';
                 str+='<div class="strlist" style="display:none; border:1px #d5d5d5 solid;" onmouseenter="teacherenter(this)" onmouseleave="teacherleave(this)">';
 
                 str+='<div class="logoimg">';
@@ -325,10 +332,10 @@ function getteacher(){
                 }else if(infoData[i]["teacherlevel"] == "200"){
                 }
 
-                str+='<img class="greyimg" showheight="'+infoData[i]["topimg_height"]+'" showwidth="'+infoData[i]["topimg_width"]+'" src="'+uri+'/public/downimg/'+infoData[i]['img_top']+'" width="200" style="border:none;"/>';
+                str+='<img class="greyimg" showheight="'+infoData[i]["topimg_height"]+'" showwidth="'+infoData[i]["topimg_width"]+'" src="/public/'+infoData[i]['thumb']+'" width="200" style="border:none;"/>';
 
                 str+='</div>';
-                str+='<div class="name" style=" width:90%; margin:auto; font-weight:bold;">'+infoData[i]["english_name"]+'</div>';
+                str+='<div class="name" style=" height: 36px; overflow: hidden; width:90%; margin:auto; font-weight:bold;">'+infoData[i]["title"]+'</div>';
                 str+='<div class="keywordsdiv" style="height:auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width:90%; margin:auto;">';
                 str+='<span style="font-size:14px; color:#9fa0a0; line-height:20px;">';
 
@@ -346,11 +353,11 @@ function getteacher(){
                         str+='<br/>';
                     }
 
-                    if(gjoptionname == infoData[i]["drawing"]){
-                        str+='<span style="color:#d91929;">'+infoData[i]["drawing"]+'</span>&nbsp;&nbsp;';
-                    }else{
-                        str+='<span style="">'+infoData[i]["drawing"]+'</span>&nbsp;&nbsp;';
-                    }
+                    // if(gjoptionname == infoData[i]["drawing"]){
+                    //     str+='<span style="color:#d91929;">'+infoData[i]["drawing"]+'</span>&nbsp;&nbsp;';
+                    // }else{
+                    //     str+='<span style="">'+infoData[i]["drawing"]+'</span>&nbsp;&nbsp;';
+                    // }
 
                     if(schooloptionname == infoData[i]["theme"]){
                         str+='<span style="color:#d91929;">'+infoData[i]["theme"]+'</span>';
