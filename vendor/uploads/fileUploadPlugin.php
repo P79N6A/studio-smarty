@@ -9,8 +9,8 @@ class fileUploadPlugin
 {
 
     //要配置的内容
-    private $path = "uploads";
-    private $allowtype = array('jpg', 'jpeg', 'gif', 'png', 'flv' ,'mp4', 'mp3','zip','rar','gz');
+    private $path = "public/uploads";
+    private $allowtype = array('jpg', 'jpeg', 'gif', 'png', 'flv' ,'mp4', 'mp3','rar','gz');
     private $maxsize = 99999999999;
     private $israndname = true;
 
@@ -82,13 +82,11 @@ class fileUploadPlugin
             if($this->checkFileSize() && $this->checkFileType()){
                 $this->setNewFileName();
                 if ($this->copyFile()){
-
-                    return '/'.$this->path.'/'.$this->newFileName;
+                    return json_encode(array('status'=>200,'messages'=>'success','path'=>'/'.$this->path.'/'.$this->newFileName)) ;
                 }
             }
         }
-        $this->errorMess = $this->getError();
-        return false;
+        return $this->getError();
     }
 
     public function chunksMerge($uniqueFileName, $chunksTotal, $fileExt){
@@ -148,7 +146,7 @@ class fileUploadPlugin
 
     //设置上传出错信息
     public function getError(){
-        $str = "上传文件<font color='red'>{$this->originName}</font>时出错：";
+        $str = "上传文件【{$this->originName}】时出错：";
         switch ($this->errorNum) {
             case 4:
                 $str.= "没有文件被上传";
@@ -181,7 +179,7 @@ class fileUploadPlugin
             default:
                 $str .= "未知错误";
         }
-        return $str."<br>";
+        return json_encode(array('status'=>500,'messages'=>$str));
     }
 
 	//根据文件的相关信息为分块数据创建文件夹

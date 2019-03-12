@@ -97,7 +97,7 @@
 
                 <div class="w530 fr">
                     <div class="register_input_div file-div">
-                        <input type="file" id="file_post" class="register_common_input" name="student_file" placeholder="">
+                        <input type="file" id="file_post" class="register_common_input" placeholder="">
 
                         <div class="register_common_input input-file" onclick="useinputfile();">
 
@@ -173,6 +173,8 @@
 
             <div>
                 <div class="register_input_div">
+                    <input type="hidden" name="submit" value="yes">
+                    <input type="hidden" name="student_file" value="">
                     <button class="input-button" name="student_submit" type="submit">提交</button>
 
                 </div>

@@ -6,10 +6,6 @@
  */
 require './configs/configs.php';
 if(isset($_POST['submit']) && $_POST['submit'] == 'yes'){
-echo 'aaa';exit;
-    echo  '<pre>';
-    var_dump($_FILES);
-    exit;
     $result = [
         'status'=>200,
         'info'=>'ok',
@@ -30,6 +26,11 @@ echo 'aaa';exit;
     var_dump($res);
 
     die(json_encode($result));
+}elseif (isset($_POST['uploads']) && $_POST['uploads'] == 'yes'){
+    require_once ('./vendor/uploads/fileUploadPlugin.php');
+    $uploadsObj = new fileUploadPlugin();
+    $res = $uploadsObj->upload('file',$_FILES);
+    die($res);
 }else{
 
     require './libs/Smarty.class.php';

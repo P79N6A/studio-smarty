@@ -74,6 +74,34 @@ $(function(){
     $("#file_post").change(function(){
         var str = $("#file_post").val();
         $("#filetext").html(str.substring(12));
+
+        var formData = new FormData();
+        formData.append('file', $('#file_post')[0].files[0]);
+        formData.append('uploads', 'yes');
+        $.ajax({
+            url: '/evaluation.php?key=evaluation',
+            type: 'POST',
+            cache: false,
+            data: formData,
+            processData: false,
+            contentType: false
+        }).done(function(res) {
+            var data = JSON.parse(res);
+            console.log(data)
+            if(data.status==500){
+                $('.Validform_info').html(data.messages)
+                var _scrollHeight = $(document).scrollTop(),//获取当前窗口距离页面顶部高度
+                    _windowHeight = $(window).height(),//获取当前窗口高度
+                    _windowWidth = $(window).width(),//获取当前窗口宽度
+                    _popupHeight = $('#Validform_msg').height(),//获取弹出层高度
+                    _popupWeight = $('#Validform_msg').width();//获取弹出层宽度
+                _posiTop = (_windowHeight - _popupHeight)/2 + _scrollHeight;
+                _posiLeft = (_windowWidth - _popupWeight)/2;
+                $('#Validform_msg').css({"left": _posiLeft + "px","top":_posiTop + "px","display":"block"});//设置position
+                console.log(data.status,data.messages)
+            }
+            $('input[name="student_file"]').val(data.path)
+        });
     });
 
 
