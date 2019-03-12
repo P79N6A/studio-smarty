@@ -5,8 +5,11 @@
  * @package Example-application
  */
 require './configs/configs.php';
-if($_POST){
-
+if(isset($_POST['submit']) && $_POST['submit'] == 'yes'){
+echo 'aaa';exit;
+    echo  '<pre>';
+    var_dump($_FILES);
+    exit;
     $result = [
         'status'=>200,
         'info'=>'ok',
