@@ -53,8 +53,8 @@ class fileUploadPlugin
 
         $this->path .='/'.date('Ymd');
         if (!$this->checkFilePath($this->path)){
-            $this->errorMess = $this->getError();
-            return false;
+//            $this->setOption('errorNum', -4);
+            return $this->getError();
         }
 
         //将文件上传的信息取出赋给变量
@@ -71,8 +71,7 @@ class fileUploadPlugin
                 $uploadDir = $this->path;
                 $tmpName = $this->setDirNameForChunks($info);
                 if(!$this->checkFilePath($uploadDir . '/' . $tmpName)){
-				    $this->errorMess = $this->getError();
-            	    return false;
+				    return $this->getError();
                 }
 
                 //创建一个对应的文件，用来记录上传分块文件的修改时间，用于清理长期未完成的垃圾分块
@@ -266,7 +265,7 @@ class fileUploadPlugin
         }
 
         if (!file_exists($target) || !is_writable($target)) {
-            if (!@mkdir($target, 0755)) {
+            if (!@mkdir($target, 0755,true)) {
                 $this->setOption('errorNum', -4);
                 return false;
             }
