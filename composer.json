@@ -1,5 +1,6 @@
 {
     "require": {
-        "phpbe/lib-captcha": "^2.1"
+        "phpbe/lib-captcha": "^2.1",
+        "phpoffice/phpspreadsheet": "^1.6"
     }
 }
