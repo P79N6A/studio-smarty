@@ -13,8 +13,10 @@ $configs = [
         'adapter'  => 'Mysql',
         'host'     => '127.0.0.1',
         'port'	   => 3306,
-        'username' => 'studio',//'root',
-        'password' => 'studio@20190313',//'password-for@mysql',
+//        'username' => 'root',
+//        'password' => 'password-for@mysql',
+        'username' => 'studio',
+        'password' => 'studio@20190313',
         'dbname'   => 'studio',
         'charset'  => 'UTF8',
     ]

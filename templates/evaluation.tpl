@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-<link rel="stylesheet" href="public/css/Validform.css">
+<link rel="stylesheet" href="public/css/validform.css">
 <script src="public/js/Validform_v5.3.2_min.js"></script>
 
 <script src="public/js/evaluation.js"></script>
