@@ -9,7 +9,14 @@ $(function(){
         ajaxPost:true,
         postonce:true,
         callback:function (data) {
-            console.log(data)
+            console.log(data,data.status,data.messages)
+            if(data.status==500){
+                showError(data.messages)
+            }
+            showError(data.messages);
+            setTimeout(function(){
+                window.location.reload();
+            }, 2000);
         },
     });
 
@@ -89,16 +96,7 @@ $(function(){
             var data = JSON.parse(res);
             console.log(data)
             if(data.status==500){
-                $('.Validform_info').html(data.messages)
-                var _scrollHeight = $(document).scrollTop(),//获取当前窗口距离页面顶部高度
-                    _windowHeight = $(window).height(),//获取当前窗口高度
-                    _windowWidth = $(window).width(),//获取当前窗口宽度
-                    _popupHeight = $('#Validform_msg').height(),//获取弹出层高度
-                    _popupWeight = $('#Validform_msg').width();//获取弹出层宽度
-                _posiTop = (_windowHeight - _popupHeight)/2 + _scrollHeight;
-                _posiLeft = (_windowWidth - _popupWeight)/2;
-                $('#Validform_msg').css({"left": _posiLeft + "px","top":_posiTop + "px","display":"block"});//设置position
-                console.log(data.status,data.messages)
+                showError(data.messages);
             }
             $('input[name="student_file"]').val(data.path)
         });
@@ -156,4 +154,15 @@ $(function(){
 });
 function useinputfile(){
     $("#file_post").click();
+}
+function showError(msg) {
+    $('.Validform_info').html(msg)
+    var _scrollHeight = $(document).scrollTop(),//获取当前窗口距离页面顶部高度
+        _windowHeight = $(window).height(),//获取当前窗口高度
+        _windowWidth = $(window).width(),//获取当前窗口宽度
+        _popupHeight = $('#Validform_msg').height(),//获取弹出层高度
+        _popupWeight = $('#Validform_msg').width();//获取弹出层宽度
+    _posiTop = (_windowHeight - _popupHeight)/2 + _scrollHeight;
+    _posiLeft = (_windowWidth - _popupWeight)/2;
+    $('#Validform_msg').css({"left": _posiLeft + "px","top":_posiTop + "px","display":"block"});//设置position
 }
