@@ -8,6 +8,9 @@
 <div class="h15"></div>
 <div class="body">
 
+    <div class="pagination pagination-right">
+       <ul><li><a href="/evaluation.php?key=evaluation&export=Yes&download=Yes&page={$smarty.get.page}">导出当前页</a></li></ul>
+    </div>
     <table id="datatables" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -56,9 +59,7 @@
         </tbody>
     </table>
     <div class="pagination pagination-right">
-        <ul>
             {$pageStr}
-        </ul>
     </div>
 </div>
 
