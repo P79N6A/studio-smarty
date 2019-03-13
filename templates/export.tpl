@@ -55,6 +55,11 @@
         {/if}
         </tbody>
     </table>
+    <div class="pagination pagination-right">
+        <ul>
+            {$pageStr}
+        </ul>
+    </div>
 </div>
 
 {include file="foot.tpl"}
