@@ -93,12 +93,12 @@ $(function(){
             processData: false,
             contentType: false
         }).done(function(res) {
-            var data = JSON.parse(res);
-            console.log(data)
-            if(data.status==500){
-                showError(data.messages);
+            // var data = JSON.parse(res);
+            console.log(res)
+            if(res.status==500){
+                showError(res.messages);
             }
-            $('input[name="student_file"]').val(data.path)
+            $('input[name="student_file"]').val(res.path)
         });
     });
 
