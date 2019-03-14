@@ -4,22 +4,12 @@
  *
  * @package Example-application
  */
-session_start();
-
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 require './configs/configs.php';
 require './libs/Smarty.class.php';
 if($_POST){
-
-    if(isset($_POST['submit']) && $_POST['submit'] == 'password'){
-        if( isset($_POST['password']) && $_POST['password'] === 'studio@20190314'){
-            $_SESSION['password'] = $_POST['password'];
-            header('Location:/evaluation.php?key=evaluation&export=Yes&page=1');
-        }
-       die(json_encode(['status'=>500,'messages'=>'密码错误']));
-    }
 
     $dsn = "mysql:dbname={$configs['databases']['dbname']};host={$configs['databases']['host']}";
     $dbh = new PDO($dsn, $configs['databases']['username'], $configs['databases']['password']);
@@ -49,7 +39,6 @@ if($_POST){
         require_once ('./vendor/uploads/fileUploadPlugin.php');
         $uploadsObj = new fileUploadPlugin();
         $res = $uploadsObj->upload('file',$_FILES);
-//        $res = json_encode(['status'=>500,'messages'=>'faild']);
         die($res);
     }
 }else{
@@ -61,11 +50,9 @@ if($_POST){
     $smarty->cache_lifetime = 120;
     $smarty->assign('nav',$configs['nav']);
 
-
-
     if(isset($_GET['export']) && $_GET['export'] === 'Yes'){
-
-        if(isset($_SESSION['password']) && $_SESSION['password']=='studio@20190314'){
+        session_start();
+        if(isset($_SESSION['password']) && $_SESSION['password'] === 'iarch@20190314'){
 
             $data = [];
             $dsn = "mysql:dbname={$configs['databases']['dbname']};host={$configs['databases']['host']}";
@@ -92,20 +79,21 @@ if($_POST){
                 if (isset($_GET['download']) && $_GET['download'] == 'Yes'){
                     $excel = new Office();
                     //设置表头：
-                    $head = ['申请编号','申请时间','姓名', '学校','专业','平均成绩','语言成绩','微信号','手机号','邮箱','作品','软件','申请国家','目标学校','申请专业','申请类别','入学时间'];
+                    $head = ['姓名', '学校','专业','平均成绩','语言成绩','微信号','手机号','邮箱','作品','软件','申请国家','目标学校','申请专业','申请类别','入学时间'];
 
                     //数据中对应的字段，用于读取相应数据：
-                    $keys = ['id','created','student_name' ,'student_school','student_major','student_gpa','student_langscore','student_weixin','student_tel','student_email','student_file','student_software','student_country','student_applyschool','student_applymajor','student_applytype','student_time'];
+                    $keys = ['student_name' ,'student_school','student_major','student_gpa','student_langscore','student_weixin','student_tel','student_email','student_file','student_software','student_country','student_applyschool','student_applymajor','student_applytype','student_time'];
                     $excel->outdata('申请信息', $data, $head, $keys);
                 }
-                $smarty->assign('data',$data);
             }
+            $smarty->assign('data',$data);
             $smarty->display('export.tpl');
         }else{
-
-            $smarty->display('admin.tpl');
+            header('Location:/index.php');
         }
+
     }else{
+        $smarty->assign('nav',$configs['nav']);
         $smarty->display('evaluation.tpl');
     }
 

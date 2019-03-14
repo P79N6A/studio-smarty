@@ -19,3 +19,15 @@ $(function(){
     })
 })
 var uri = "http://www.lac-studio.com";
+
+function showError(msg) {
+    $('.Validform_info').html(msg)
+    var _scrollHeight = $(document).scrollTop(),//获取当前窗口距离页面顶部高度
+        _windowHeight = $(window).height(),//获取当前窗口高度
+        _windowWidth = $(window).width(),//获取当前窗口宽度
+        _popupHeight = $('#Validform_msg').height(),//获取弹出层高度
+        _popupWeight = $('#Validform_msg').width();//获取弹出层宽度
+    _posiTop = (_windowHeight - _popupHeight)/2 + _scrollHeight;
+    _posiLeft = (_windowWidth - _popupWeight)/2;
+    $('#Validform_msg').css({"left": _posiLeft + "px","top":_posiTop + "px","display":"block"});//设置position
+}

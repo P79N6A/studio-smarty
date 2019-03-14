@@ -6,14 +6,20 @@
     }
 </style>
 <div class="h15"></div>
-<div class="body">
+<div class="body" style="width: 90%;">
 
     <div class="pagination pagination-right">
-       <ul><li><a href="/evaluation.php?key=evaluation&export=Yes&download=Yes&page={$smarty.get.page}">导出当前页</a></li></ul>
+       <ul>
+           <li><a href="/evaluation.php?key=evaluation&export=Yes&delect=Yes">删除选中项</a></li>
+           <li><a href="/evaluation.php?key=evaluation&export=Yes&download=Yes&page={$smarty.get.page}">导出当前页</a></li>
+       </ul>
     </div>
     <table id="datatables" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
         <thead>
             <tr>
+                <th></th>
+                <th>编号</th>
+                <th>申请时间</th>
                 <th>姓名</th>
                 <th>学校</th>
                 <th>专业</th>
@@ -36,6 +42,9 @@
         {if $data}
             {foreach $data as $evaluation}
             <tr>
+                <th><input type="checkbox" name="checkbox" data-val="{$evaluation['id']}"></th>
+                <td>{$evaluation['id']}</td>
+                <td>{$evaluation['created']}</td>
                 <td>{$evaluation['student_name']}</td>
                 <td>{$evaluation['student_school']}</td>
                 <td>{$evaluation['student_major']}</td>
