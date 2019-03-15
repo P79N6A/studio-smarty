@@ -327,7 +327,7 @@ function getteacher(){
                 }else if(infoData[i]["teacherlevel"] == "200"){
                 }
 
-                str+='<img class="greyimg" showheight="'+infoData[i]["topimg_height"]+'" showwidth="'+infoData[i]["topimg_width"]+'" src="/public/'+infoData[i]['thumb']+'" width="200" style="border:none;"/>';
+                str+='<img class="greyimg" showheight="'+infoData[i]["topimg_height"]+'" showwidth="'+infoData[i]["topimg_width"]+'" src="/public/'+infoData[i]['thumb']+'" height="200" width="200" style="border:none;"/>';
 
                 str+='</div>';
                 str+='<div class="name" style=" height: 36px; overflow: hidden; width:90%; margin:auto; font-weight:bold;">'+infoData[i]["title"]+'</div>';
