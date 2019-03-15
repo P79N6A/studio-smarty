@@ -25,7 +25,7 @@ if($_POST){
     $dbh = new PDO($dsn, $configs['databases']['username'], $configs['databases']['password']);
     $dbh->exec('set names utf8');
 
-    if(isset($_POST['delect']) && $_POST['delect'] == 'Yes'){
+    if(isset($_POST['delect']) && $_POST['delect'] == 'Yes' && isset($_SESSION['password']) && $_SESSION['password']==='studio@20190314'){
         $ids = isset($_POST['ids']) ? $_POST['ids'] : [];
         if(is_array($ids) && count($ids) >0){
             $idsStr = implode(',',$ids);
