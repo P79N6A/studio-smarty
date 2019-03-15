@@ -25,7 +25,38 @@ if($_POST){
     $dbh = new PDO($dsn, $configs['databases']['username'], $configs['databases']['password']);
     $dbh->exec('set names utf8');
 
-    if(isset($_POST['submit']) && $_POST['submit'] == 'yes'){
+    if(isset($_POST['delect']) && $_POST['delect'] == 'Yes'){
+        $ids = isset($_POST['ids']) ? $_POST['ids'] : [];
+        if(is_array($ids) && count($ids) >0){
+            $idsStr = implode(',',$ids);
+            $sql = "SELECT `id`,`student_file` FROM `evaluation` WHERE `id` IN ($idsStr)";
+            $res = $dbh->prepare($sql);
+            $res->execute();
+            if($dbh->errorCode() == 0000){
+                $data = $res->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($data as $id) {
+                    if(file_exists( '.'.$id['student_file'])){
+                        @unlink('.'.$id['student_file']);
+                    }
+                    $delSql = "DELETE  FROM `evaluation` WHERE id={$id['id']}";
+                    $delStmt = $dbh->prepare($delSql);
+                    $delStmt->execute();
+                    $delRow = $delStmt->rowCount();
+                    if(!$delRow) {
+                        die(json_encode(['status'=>500,'messages'=>"数据{$id['id']}删除失败"]));
+                    }
+                }
+                die(json_encode(['status'=>200,'messages'=>"删除成功"]));
+
+            }else{
+                die(json_encode(['status'=>500,'messages'=>'数据不存在']));
+            }
+
+            echo $sql;exit;
+        }else{
+            die(json_encode(['status'=>500,'messages'=>'请选择要删除的数据']));
+        }
+    }else if(isset($_POST['submit']) && $_POST['submit'] == 'yes'){
 
         $postData = $_POST;
         $tmp = [];
@@ -45,7 +76,7 @@ if($_POST){
         }else{
             die(json_encode(['status'=>200,'messages'=>'提交成功']));
         }
-    }elseif (isset($_POST['uploads']) && $_POST['uploads'] == 'yes'){
+    }else if (isset($_POST['uploads']) && $_POST['uploads'] == 'yes'){
         require_once ('./vendor/uploads/fileUploadPlugin.php');
         $uploadsObj = new fileUploadPlugin();
         $res = $uploadsObj->upload('file',$_FILES);

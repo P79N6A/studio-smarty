@@ -1,16 +1,49 @@
 {include file="header.tpl"}
 <link rel="stylesheet" href="public/css/bootstrap.min.css">
+<link rel="stylesheet" href="public/css/validform.css">
+<script src="public/js/Validform_v5.3.2_min.js"></script>
 <style>
     .table th, .table td {
         text-align: center;
     }
 </style>
+<script>
+    $(function () {
+
+        $('.table').Validform({ });
+        $('.download').click(function () {
+            var chkValue =[];//定义一个数组
+            $('input[name="checkbox"]:checked').each(function(){
+                chkValue.push($(this).attr('data'));
+            });
+            if(chkValue.length == false){
+                showError('请选择要删除的数据');
+                return false;
+            }
+            var data = { };
+            data.delect = 'Yes'
+            data.ids = chkValue
+//            console.log(data)
+            $.post('/evaluation.php?key=evaluation&delect=Yes',data,function (result) {
+                var data = JSON.parse(result)
+                console.log(data,data.status,data.messages)
+                if(data.status==500){
+                    showError(data.messages)
+                }
+                showError(data.messages);
+                setTimeout(function(){
+                    window.location.reload();
+                }, 2000);
+            });
+        });
+    });
+</script>
 <div class="h15"></div>
 <div class="body" style="width: 90%;">
 
     <div class="pagination pagination-right">
        <ul>
-           <li><a href="/evaluation.php?key=evaluation&export=Yes&delect=Yes">删除选中项</a></li>
+           <li><a href="javascript:void(0);" class="download">删除选中项</a></li>
            <li><a href="/evaluation.php?key=evaluation&export=Yes&download=Yes&page={$smarty.get.page}">导出当前页</a></li>
        </ul>
     </div>
@@ -42,7 +75,7 @@
         {if $data}
             {foreach $data as $evaluation}
             <tr>
-                <th><input type="checkbox" name="checkbox" data-val="{$evaluation['id']}"></th>
+                <th><input type="checkbox" name="checkbox" data="{$evaluation['id']}"></th>
                 <td>{$evaluation['id']}</td>
                 <td>{$evaluation['created']}</td>
                 <td>{$evaluation['student_name']}</td>
