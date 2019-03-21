@@ -79,6 +79,7 @@ function getmatter(){
             pagenums++;
             var json = eval('(' + data + ')');
             var infoData=json["data"];
+            console.log(infoData)
 
             var nums = 1;
             for (i in infoData) {
